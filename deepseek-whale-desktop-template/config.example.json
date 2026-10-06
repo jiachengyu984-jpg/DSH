@@ -1,0 +1,16 @@
+{
+  "ollama": {
+    "baseUrl": "http://127.0.0.1:11434",
+    "executable": "",
+    "autoStart": true,
+    "model": "deepseek-r1:8b"
+  },
+  "harness": {
+    "enabled": false,
+    "cliPath": "",
+    "nodePath": "node",
+    "patchPath": "",
+    "workspace": ""
+  },
+  "dataDir": ""
+}

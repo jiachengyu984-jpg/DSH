@@ -1,0 +1,19 @@
+*{box-sizing:border-box}html,body{margin:0;background:transparent;width:100%;height:100%;overflow:hidden;user-select:none;font-family:'Microsoft YaHei',sans-serif}
+.bubble{position:absolute;z-index:5;top:6px;left:5%;background:#f9fcfff5;border:1px solid #b5d8fa;border-radius:16px 16px 5px 16px;padding:9px 12px;color:#36557d;font-size:12px;line-height:1.5;max-width:90%;box-shadow:0 3px 10px #08193818;opacity:0;transform:translateY(4px);transition:opacity .22s,transform .28s;pointer-events:none}.bubble.show{opacity:1;transform:translateY(0)}
+#stage{position:absolute;bottom:0;left:0;width:100%;height:calc(100% - 70px)}
+#sprite{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none;outline:none}#sprite:active{cursor:grabbing}
+#float{position:absolute;left:6%;bottom:4%;width:88%;height:88%;animation:float 5.7s ease-in-out infinite}
+#look,#actor{position:absolute;inset:0;transform-origin:50% 88%}
+#look{transform:translate(var(--look-x,0px),var(--look-y,0px)) rotate(var(--look-r,0deg));transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+#actor{filter:drop-shadow(0 3px 2px #18396e20);will-change:transform}
+.pose{position:absolute;inset:0;width:100%;height:100%;background-image:url('assets/whale-poses.png');background-size:400% 200%;background-repeat:no-repeat;background-position:0% 0%;opacity:0;transition:opacity .16s ease-in-out;pointer-events:none}.pose.visible{opacity:1}
+#stage[class^="act-"] #float,#stage.dragging #float{animation-play-state:paused}
+#stage.dragging #look{transition:transform .18s ease-out;transform:rotate(var(--drag-r,0deg))}
+#particles{position:absolute;inset:0;overflow:visible;pointer-events:none}
+.particle{position:absolute;left:50%;top:35%;color:#7bb9f0;font-size:18px;line-height:1;text-shadow:0 1px 4px #ffffffe0;will-change:transform,opacity;pointer-events:none}
+.particle.heart{color:#f496b7}.particle.blush{color:#eda2be}.particle.sleep{color:#8ca5ce;font-size:14px}.particle.music{color:#769ae4}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-.4deg)}48%{transform:translateY(-2px) rotate(.5deg)}}
+@media(prefers-reduced-motion:reduce){#float{animation:none}.pose,.bubble,#look{transition-duration:.05s}}
+
+
+#balance-card{position:absolute;z-index:4;top:3px;left:5%;width:90%;height:65px;padding:4px 9px;background:linear-gradient(135deg,#fffffff7,#edf6fff7);border:1px solid #b5d8fa;border-radius:13px;box-shadow:0 2px 8px #173c6818;color:#36557d}#balance-card[hidden]{display:none}.balance-top{display:flex;align-items:center;justify-content:space-between;font-size:10px;line-height:15px}.balance-top button{border:0;background:transparent;color:#5578a3;cursor:pointer;padding:0 3px;font-size:13px;border-radius:4px}.balance-top button:hover{background:#d9eafa}.balance-top button:disabled{opacity:.4;cursor:wait}#balance-amount{display:block;font-size:21px;font-weight:650;line-height:24px;letter-spacing:.3px}#balance-note{font-size:9px;line-height:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#balance-card[data-state="stale"] #balance-note,#balance-card[data-state="error"] #balance-note{color:#946228}body:has(.bubble.show) #balance-card{visibility:hidden}
